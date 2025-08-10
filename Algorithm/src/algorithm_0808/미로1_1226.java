@@ -45,7 +45,7 @@ public class 미로1_1226 {
 	
 	static void bfs(int y, int x) { //bfs
 		visited[y][x] = 1;//방문처리
-		Queue<int[]> queue = new LinkedList<int[]>();
+		queue = new LinkedList<int[]>();
 		queue.offer(new int[] {y, x});
 		while (!queue.isEmpty()) { //재귀처리 x 방문 가능한 곳 없을 때 까지
 			int[] cur = queue.poll();
@@ -60,13 +60,6 @@ public class 미로1_1226 {
 				}
 			}
 		}
-//		for (int i = 0; i < 4; i++) {
-//			int nX = x + dx[i];
-//			int nY = y + dy[i];
-//			if(visited[nY][nX] == 0 && !isWall(nX, nY)) { //벽이 아니고 방문 안한 장소면
-//				dfs(nX, nY); //새로운 좌표에서 탐색 시작
-//			}
-//		}
 	}
 	
 	static boolean isWall(int y, int x) {
