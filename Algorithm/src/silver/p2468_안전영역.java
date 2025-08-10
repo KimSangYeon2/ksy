@@ -62,7 +62,6 @@ public class p2468_안전영역 {
 			int ny = y + dy[i];
 			int nx = x + dx[i];
 			if(!isEnd(ny, nx) && visited[ny][nx] == 0) {
-				visited[ny][nx] = 1;
 				dfs(ny, nx);
 			}
 		}

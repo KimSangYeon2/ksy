@@ -56,7 +56,6 @@ public class p4963_섬의_개수 {
 			int ny = y + dy[i];
 			int nx = x + dx[i];
 			if(!isEnd(ny, nx) && visitable[ny][nx]) { //탐색하는 곳이 영역 밖이 아니고 방문가능한 곳이면
-				visitable[ny][nx] = false; //방문처리
 				dfs(ny, nx);
 			}
 		}

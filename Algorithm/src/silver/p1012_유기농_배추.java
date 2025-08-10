@@ -54,7 +54,6 @@ public class p1012_유기농_배추 {
 			int ny = y + dy[i];
 			int nx = x + dx[i];
 			if(!isEnd(ny, nx) && visitable[ny][nx]) {
-				visitable[ny][nx] = false; //방문 완료
 				bfs(ny, nx);
 			}
 		}
