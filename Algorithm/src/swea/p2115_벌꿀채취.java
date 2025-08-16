@@ -34,8 +34,8 @@ public class p2115_벌꿀채취 {
 			}
 			w1 = new int[M];
 			w2 = new int[M];
-			max_h1 = Integer.MIN_VALUE;
-			max_h2 = Integer.MIN_VALUE;
+			max_h1 = 0;
+			max_h2 = 0;
 			dfs();
 			sb.append(max_h1 + max_h2).append("\n");
 		}
