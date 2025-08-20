@@ -12,7 +12,7 @@ public class p15655_N과M_6 {
 	static int[] nums, result;
 	static boolean[] isUsed;
 	static StringBuilder sb;
-	
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st = new StringTokenizer(br.readLine());
@@ -23,7 +23,7 @@ public class p15655_N과M_6 {
 		result = new int[M];
 		isUsed = new boolean[N];
 		st = new StringTokenizer(br.readLine());
-		for(int i = 0; i < N; i++) 
+		for (int i = 0; i < N; i++)
 			nums[i] = Integer.parseInt(st.nextToken());
 		Arrays.sort(nums);
 		subset(0, 0);
@@ -32,19 +32,15 @@ public class p15655_N과M_6 {
 	}
 
 	static void subset(int start, int depth) {
-		if(depth == M) {
-			for(int i = 0; i < M; i++)
+		if (depth == M) {
+			for (int i = 0; i < M; i++)
 				sb.append(result[i]).append(" ");
 			sb.append("\n");
 			return;
 		}
-		for(int i = start; i < N; i++) {
-			if(!isUsed[i]) {
-				isUsed[i] = true;
-				result[depth] = nums[i];
-				subset(i + 1, depth + 1);
-				isUsed[i] = false;
-			}
+		for (int i = start; i < N; i++) {
+			result[depth] = nums[i];
+			subset(i + 1, depth + 1);
 		}
 	}
 }

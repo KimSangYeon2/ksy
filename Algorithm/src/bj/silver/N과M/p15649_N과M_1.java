@@ -24,7 +24,7 @@ public class p15649_N과M_1 {
 		subset(0);
 	}
 	
-	//NM1
+	//NM1 순열
 	static void subset(int depth) {
 		//완성 후 출력
 		if(depth == M) {
