@@ -3,9 +3,11 @@ package swea;
 import java.util.Scanner;
  
 public class p2115_벌꿀채취 {
+	
     static int n, m, c;
     static int arr[][];
     static int val[];
+    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int T = sc.nextInt();
