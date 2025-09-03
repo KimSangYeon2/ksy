@@ -46,9 +46,9 @@ public class D5_1245_균형점 {
 	    double l = left(mid, in);
 	    double r = right(mid, in);
 
-		if (Math.abs(end - start) < 1e-12) return mid;
-	    if (l > r) return binarySearch(start, mid, in); // 왼쪽
-	    else return binarySearch(mid, end, in);         // 오른쪽
+		if (end - start < 1e-12) return mid;
+	    if (l < r) return binarySearch(start, mid, in); // 오른쪽이 더 강하면 왼쪽으로
+	    else return binarySearch(mid, end, in); // 왼쪽이 더 강하면 오른쪽으로
 	}
 	
 	static double left(double n, int in) {
