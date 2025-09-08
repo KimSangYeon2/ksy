@@ -13,7 +13,7 @@ class Node { //트리의 노드 정보를 저장할 클래스 구조체
 	}
 }
 
-public class parctive_treenode {
+public class practive_treenode {
 	public Node root; //초기 root는 null
 
 	public void createNode(int data, int leftData, int rightData) {
@@ -81,7 +81,7 @@ public class parctive_treenode {
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int n = sc.nextInt();
-		parctive_treenode t = new parctive_treenode();
+		practive_treenode t = new practive_treenode();
 		
 		for (int i = 0; i < n; i++) {
 			int a = sc.nextInt();
