@@ -2,7 +2,7 @@ package bj.silver;
 
 import java.util.Scanner;
 
-public class s2_18352_특정_거리의_도시_찾기 {
+public class p18352_특정_거리의_도시_찾기 {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);

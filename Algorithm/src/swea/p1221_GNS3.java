@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class D3_1221_GNS3 {
+public class p1221_GNS3 {
 
 	public static void main(String[] args) throws IOException {
 		long startTime = System.currentTimeMillis();

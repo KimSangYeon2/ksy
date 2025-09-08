@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class D3_1216_회문2 {
+public class p1216_회문2 {
 
 	static char[][] Char;
 	static int ans;

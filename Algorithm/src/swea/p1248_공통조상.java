@@ -1,10 +1,10 @@
-package _0908;
+package swea;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class D5_1248_공통조상 {
+public class p1248_공통조상 {
 
 	static class Node {
 		int child, parent;
