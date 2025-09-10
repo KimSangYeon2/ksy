@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.PriorityQueue;
+import java.util.Collections;
 import java.util.StringTokenizer;
 
 public class p1260_화학물질2 {
@@ -38,11 +38,30 @@ public class p1260_화학물질2 {
 				}
 			}
 			
-			int L = matrix.size();
-			int[][] dp = new int[L][L];
-			for(int )
+			//정렬로직 다시 짜기
+			Collections.sort(matrix, (o1, o2) -> {
+				if(o1[1] == o2[0]) return -1;
+				else if(o1[0] == o2[1])return 1;
+				else return -1;
+			});
 			
-			sb.append("#").append(t).append(" ").append(0).append("\n");
+			int L = matrix.size();
+			int[] nums = new int[L + 1];
+			for(int i = 0; i < L; i++) nums[i] = matrix.get(i)[0];
+			nums[L] = matrix.get(L - 1)[1];
+			
+			int[][] dp = new int[L + 1][L + 1];
+			for(int l = 1; l < L; l++) {
+				for(int s = 1; s <= L - l; s++) {
+					int e = s + l;
+					dp[s][e] = Integer.MAX_VALUE;
+					for(int k = s; k < e; k++) {
+						dp[s][e] = Math.min(dp[s][e], dp[s][k] + dp[k + 1][e] + nums[s - 1] * nums[k] * nums[e]);
+					}
+				}
+			}
+			
+			sb.append("#").append(t).append(" ").append(dp[1][L]).append("\n");
 		}
 		System.out.println(sb);
 		br.close();
