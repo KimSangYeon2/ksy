@@ -1,10 +1,10 @@
-package swea;
+package practice.algorithm_0908;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class p1216_회문2_2 {
+public class D3_1216_회문2_2 {
 
 	static char[][] Char;
 	

@@ -1,4 +1,4 @@
-package swea;
+package practice.algorithm_0908;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
-public class p1221_GNS3 {
+public class D3_1221_GNS3 {
 
 	public static void main(String[] args) throws IOException {
 		long startTime = System.currentTimeMillis();
