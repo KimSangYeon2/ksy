@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.StringTokenizer;
 
 public class p1260_화학물질2 {
@@ -26,7 +27,9 @@ public class p1260_화학물질2 {
 				}
 			}
 			
-			ArrayList<int[]> matrix = new ArrayList<>();
+			HashMap<Integer, Integer> mapMatrix = new HashMap<>();
+			HashSet<Integer> setRow = new HashSet<>();
+			HashSet<Integer> setCol = new HashSet<>();
 			for(int y = 1; y <= N; y++) {
 				for(int x = 1; x <= N; x++) {
 					if(map[y][x] == 0) continue;
@@ -34,16 +37,23 @@ public class p1260_화학물질2 {
 					int row = 0; int col = 0;
 					while(map[y + row][x] != 0) row++;
 					while(map[y][x + col] != 0) col++;
-					matrix.add(new int[] {row, col});
+					mapMatrix.put(row, col);
+					setRow.add(row);
+					setCol.add(col);
 				}
 			}
 			
-			//정렬로직 다시 짜기
-			Collections.sort(matrix, (o1, o2) -> {
-				if(o1[1] == o2[0]) return -1;
-				else if(o1[0] == o2[1])return 1;
-				else return -1;
-			});
+			//시작행렬찾아서 곱셈 순서 맞추기
+			int start = 0;
+			for(int r : setRow)
+				if(!setCol.contains(r)) start = r;
+			
+			ArrayList<int[]> matrix = new ArrayList<>();
+			while(!mapMatrix.isEmpty()) {
+				int end = mapMatrix.remove(start);
+				matrix.add(new int[] {start, end});
+				start = end;
+			}
 			
 			int L = matrix.size();
 			int[] nums = new int[L + 1];
