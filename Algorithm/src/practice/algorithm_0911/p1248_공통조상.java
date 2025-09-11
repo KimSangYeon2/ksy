@@ -29,7 +29,7 @@ public class p1248_공통조상 {
 			B = Integer.parseInt(st.nextToken());
 			
 			Tree = new Node[V + 1];
-			for(int v = 1; v <= V; v++) Tree[v] = new Node();
+			for(int v = 0; v <= V; v++) Tree[v] = new Node();
 			
 			st = new StringTokenizer(br.readLine());
 			for(int e = 0; e < E; e++) {
@@ -42,8 +42,8 @@ public class p1248_공통조상 {
 			
 			minParent = 1;
 			parents = new ArrayList<>();
-			findParent();
-			//findParent2(A, B);
+			//findParent();
+			findParent2(A, B);
 			
 			cnt = 0;
 			countSubtree(Tree[minParent]);
