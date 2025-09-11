@@ -1,4 +1,4 @@
-package going;
+package practice.algorithm_0911;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,11 +8,12 @@ import java.util.ArrayList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class p1248_공통조상 {
+public class p1248_공통조상2 {
 	
-	static int V, E, A, B, cnt;
+	static int V, E, A, B, minParent, cnt;
 	static boolean[] visited;
-	static ArrayList<Integer>[] fromto;
+	static ArrayList<Integer>[] parentToChild;
+	static ArrayList<Integer>[] childToParent;
 	static Queue<Integer> q;
 	
 	public static void main(String[] args) throws IOException {
@@ -27,47 +28,66 @@ public class p1248_공통조상 {
 			A = Integer.parseInt(st.nextToken());
 			B = Integer.parseInt(st.nextToken());
 			
-			fromto = new ArrayList[V + 1];
-			for(int v = 1; v <= V; v++) fromto[v] = new ArrayList<>();
+			parentToChild = new ArrayList[V + 1];
+			childToParent = new ArrayList[V + 1];
+			for(int v = 1; v <= V; v++) {
+				parentToChild[v] = new ArrayList<>();
+				childToParent[v] = new ArrayList<>();
+			}
 			
 			st = new StringTokenizer(br.readLine());
 			for(int e = 0; e < E; e++) {
 				int parent = Integer.parseInt(st.nextToken());
 				int child = Integer.parseInt(st.nextToken());
-				fromto[parent].add(child);
+				parentToChild[parent].add(child);
+				childToParent[child].add(parent);
 			}
 			
-			int n = 0;
-			int minParent = 0;
-			for(int v = 1; v <= V; v++) {
-				bfs(v);
-				if(visited[A] && visited[B]) {
-					n = cnt;
-					minParent = v;
-				}
-			}
+			minParent = 0;
+			visited = new boolean[V + 1];
+			bfsChildtoParent(A);
+			bfsChildtoParent(B);
 			
-			sb.append("#").append(t).append(" ").append(minParent).append(" ").append(n).append("\n");
+			bfsParenttoChild(minParent);
+			
+			sb.append("#").append(t).append(" ").append(minParent).append(" ").append(cnt).append("\n");
 		}
 		System.out.println(sb);
 		br.close();
 	}
 	
-	static void bfs(int in) {
+	static void bfsChildtoParent(int in) {
 		q = new ArrayDeque<>();
 		q.offer(in);
 		
+		while(!q.isEmpty()) {
+			int child = q.poll();
+			
+			for(int parent : childToParent[child]) {
+				if(visited[parent]) {
+					minParent = parent;
+					continue;
+				}
+				visited[parent] = true;
+				q.offer(parent);
+			}
+		}
+	}
+	
+	static void bfsParenttoChild(int in) {
+		q = new ArrayDeque<>();
+		q.offer(in);
+		
+		cnt = 0;
 		visited = new boolean[V + 1];
-		cnt = 1;
 		
 		while(!q.isEmpty()) {
 			int parent = q.poll();
-			
-			for(int child : fromto[parent]) {
+			cnt++;
+			for(int child : parentToChild[parent]) {
 				if(visited[child]) continue;
 				visited[child] = true;
 				q.offer(child);
-				cnt++;
 			}
 		}
 	}
