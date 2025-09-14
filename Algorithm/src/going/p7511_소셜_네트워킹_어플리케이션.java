@@ -7,7 +7,8 @@ import java.util.StringTokenizer;
 
 public class p7511_소셜_네트워킹_어플리케이션 {
 	
-	static int N, K, M;
+	static int[] parent;
+	static int N;
 	
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -17,18 +18,24 @@ public class p7511_소셜_네트워킹_어플리케이션 {
 			sb.append("Scenario ").append(t).append(":\n");
 			
 			N = Integer.parseInt(br.readLine());
-			K = Integer.parseInt(br.readLine());
+			make();
 			
-			
+			int K = Integer.parseInt(br.readLine());
 			for(int k = 1; k <= K; k++) {
 				StringTokenizer st = new StringTokenizer(br.readLine());
-				
+				int A = Integer.parseInt(st.nextToken());
+				int B = Integer.parseInt(st.nextToken());
+				union(A, B);
 			}
 			
 			
-			M = Integer.parseInt(br.readLine());
+			int M = Integer.parseInt(br.readLine());
 			for(int m = 1; m <= M; m++) {
-				
+				StringTokenizer st = new StringTokenizer(br.readLine());
+				int A = Integer.parseInt(st.nextToken());
+				int B = Integer.parseInt(st.nextToken());
+				if(find(A) == find(B)) sb.append("1\n");
+				else sb.append("0\n");
 			}
 			
 			sb.append("\n");
@@ -37,11 +44,21 @@ public class p7511_소셜_네트워킹_어플리케이션 {
 		br.close();
 	}
 
-	static class Path {
-		int from, to;
-		public Path(int from, int to) {
-			this.from = from;
-			this.to = to;
-		}
+	static void make() {
+		parent = new int[N + 1];
+		for(int n = 0; n <= N; n++) parent[n] = n;
+	}
+	
+	static int find(int A) {
+		if(parent[A] == A) return A;
+		return find(parent[A]);
+	}
+	
+	static void union(int a, int b) {
+		int A = find(a);
+		int B = find(b);
+		if(A == B) return;
+		if(A > B) parent[B] = A;
+		else parent[A] = B;
 	}
 }

@@ -71,8 +71,8 @@ public class p17135_캐슬디펜스 {
 				}
 				queue.offer(new int[] {ny, nx});
 			}
-			range++;
-			if(range == D) break;
+			//range++;
+			//if(range == D) break;
 		}
 	}
 	
