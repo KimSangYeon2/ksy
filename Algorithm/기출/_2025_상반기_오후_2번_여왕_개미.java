@@ -8,6 +8,7 @@ import java.util.StringTokenizer;
 public class _2025_상반기_오후_2번_여왕_개미 {
 
 	static int[] house = new int[20001];
+	static int last = 1_000_000_000;
 	static int idx = 0; //0은 여왕 집
 	//Main
 	public static void main(String[] args) throws IOException {
@@ -29,13 +30,13 @@ public class _2025_상반기_오후_2번_여왕_개미 {
 				add(Integer.parseInt(st.nextToken()));
 			break;
 		case 200 :
-			add(Integer.parseInt(st.nextToken()));
+			add(num);
 			break;
 		case 300 :
-			remove(Integer.parseInt(st.nextToken()));
+			remove(num);
 			break;
 		case 400 :
-			recon(Integer.parseInt(st.nextToken()));
+			recon(0, last, num);
 			break;
 		default : 
 			break;
@@ -53,8 +54,53 @@ public class _2025_상반기_오후_2번_여왕_개미 {
 	}
 	
 	//400
-	static void recon(int ants) {
-		int t = (house[idx] - house[1]) / ants;
+	static void recon(int start, int end, int ants) {
+		//start ~ end 이진탐색 돌리면서 개미 배치하기 -> 배치 가능하면 loop 끊고 return
+		int ans = end;
+		while(start <= end) {
+			int mid = (start + end) / 2;
+			
+			if(isAble(mid, ants)) {
+				ans = mid;
+				end = mid - 1;
+			}
+			else {
+				start = mid + 1;
+			}
+		}
+		System.out.println(ans);
+	}
+	
+	//개미 배치하면서 확인하기
+	static boolean isAble(int d, int ants) {
 		
+		//1 ~ 2까지
+		int start = 1;
+		int end = 2;
+		
+		//개미 수
+		int cnt = 1;
+		
+		while(end <= idx) {
+			if(house[start] == -1) {
+				start++;
+				end++;
+				continue;
+			}
+			if(house[end] == 0) { //끝이면 break
+				break;
+			}
+			if(house[end] == -1) { //삭제 skip
+				end++;
+				continue;
+			}
+			if(house[end] - house[start] > d) {
+				start = end;
+				cnt++;
+			}
+			end++;
+		}
+		
+		return cnt <= ants;
 	}
 }
